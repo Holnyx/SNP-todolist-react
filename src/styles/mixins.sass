@@ -1,0 +1,27 @@
+@import './viewport'
+    
+@mixin font-style($fw, $fs, $lh, $ls)
+    font-weight: $fw
+    font-size: $fs
+    line-height: $lh
+    letter-spacing: $ls
+
+@mixin grid-column-media($num_1024, $num_768)
+    @media (max-width: 1024px)
+        grid-column: span $num_1024
+    @media (max-width: 768px)
+        grid-column: span $num_768
+
+
+@mixin grid_row_column($row,$column)
+    grid-row: $row
+    grid-column: span $column
+
+
+@mixin mobile
+    @media (max-width: $mobile)
+        @content
+
+@mixin laptop
+    @media (max-width: $laptop)
+        @content

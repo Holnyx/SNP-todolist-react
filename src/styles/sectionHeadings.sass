@@ -1,0 +1,27 @@
+@import './color'
+@import './mixins'
+
+.info
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-bottom: 100px
+    @include mobile
+        margin-bottom: 50px
+        
+    &__title
+        max-width: 528px
+        width: 100%
+        margin: 0 0 30px
+        @include font-style(700,59px,124%,0)
+        @include mobile
+            margin: 0 0 20px
+            @include font-style(700,34px,112%,0.02em)
+
+    &__sub-title
+        max-width: 400px
+        width: 100%
+        @include font-style(400,20px,142%,0)
+        color: $color-grey-300
+        @include mobile
+            @include font-style(400,16px,142%,0)

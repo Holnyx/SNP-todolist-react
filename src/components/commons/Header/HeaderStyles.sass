@@ -1,0 +1,73 @@
+@import '../../../styles/color'
+@import '../../../styles/mixins'
+
+.show
+    backdrop-filter: blur(54px)
+    &::before
+        position: absolute
+        content: ''
+        width: 100%
+        height: 100%
+        background-color: rgba(243, 239, 232, 0.6)
+
+    .header
+        .list__item
+            color: $color-black
+            &::before
+                background-color: $color-black
+
+        &__logo
+            filter: none
+.header
+    position: absolute
+    z-index: 999
+    left: 0
+    right: 0
+    top: 0
+    display: flex
+    align-items: center
+    justify-content: space-between
+    height: 88px
+    color: white
+    background: none
+
+    &__logo
+        height: 30.3px
+        filter: invert(1) grayscale(1000%) contrast(100)
+        @include mobile
+            height: 22px
+            width: 100%
+
+    &__list
+        display: flex
+        gap: 50px
+        padding: 0
+        list-style-type: none
+        a
+            text-decoration: none
+        @include laptop
+            gap: 30px
+
+.list__item
+    position: relative
+    @include font-style(400,20px,142%,0)
+    color: white
+    cursor: pointer
+    @include mobile
+        font-size: 16px
+
+    &--hover
+        &::before
+            position: absolute
+            content: ''
+            bottom: -3px
+            height: 1px
+            left: 50%
+            width: 0%
+            background-color: white
+            opacity: 0
+            transition: .3s ease
+        &:hover::before
+            width: 100%
+            margin-left: -50%
+            opacity: 1
