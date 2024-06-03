@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.sass'
-import { FooterLinkState } from './FooterLinkState';
+import { FooterLinkState } from './footerLinkState';
 import { Icon } from '../Icon';
 
 export const Footer = () => {

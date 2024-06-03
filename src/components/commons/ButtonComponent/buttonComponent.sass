@@ -1,3 +1,6 @@
+@import '../../../styles/color'
+@import '../../../styles/mixins'
+    
 .button-info
     display: flex
     justify-content: center
@@ -7,6 +10,20 @@
     font-weight: 700
     color: white
     transition: .3s background ease
+    cursor: pointer
+    padding: 8px 20px
+    border-radius: 50px
+    transform: translateX(-20px)
+    @include mobile
+        padding: 0px 20px
+    &:hover
+        background-color: $color-green-400
+    @include mobile
+        background-color: transparent
+    &:active
+        background-color: $color-orange-200
+        @include mobile
+            background-color: transparent
     
 .button-low-viewport
     font-size: 16px

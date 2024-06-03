@@ -1,11 +1,10 @@
 
-
 import React from 'react';
-import '@/styles/reset.sass'
-import '@/styles/wrapper.sass'
-import '@/styles/sectionHeadings.sass'
-import '@/styles/gap.sass'
-import '@/styles/style.sass'
+import '/src/styles/reset.sass'
+import '/src/styles/wrapper.sass'
+import '/src/styles/sectionHeadings.sass'
+import '/src/styles/gap.sass'
+import '/src/styles/style.sass'
 import HomePage from './HomePage/page';
 
 function Home({ }) {

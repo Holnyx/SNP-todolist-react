@@ -2,9 +2,16 @@
 
 import { Icon } from "../Icon"
 import './buttonComponent.sass'
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
-export const ButtonInfo = () => {
+type ButtonType = {
+    href?: string
+    title: string
+    className?: string
+}
+
+
+export const ButtonInfo: FC<ButtonType> = ({href, title, className}) => {
     const [show, setShow] = useState(false)
     useEffect(() => {
         setShow(window.innerWidth > 1023)
@@ -17,7 +24,7 @@ export const ButtonInfo = () => {
         };
     }, []);
     return (
-        <a href="#" className={show ? 'button-info' : 'button-info button-low-viewport'}>Подробнее
+        <a href={href} className={`${show ? 'button-info' : 'button-info button-low-viewport'} ${className}`}>{title}
             <Icon width="24" height="26" viewBox="0 0 24 26" iconId={"Arrow"} />
         </a>
     )

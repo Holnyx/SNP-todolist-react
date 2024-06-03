@@ -1,7 +1,7 @@
 import React from 'react';
 import './Journey.sass'
-import { menuButtonState } from './JourneyLinkState';
-import { items } from './JourneyItemsState';
+import { menuButtonState } from './journeyLinkState';
+import { items } from './journeyItemsState';
 import { ButtonInfo } from '@/components/commons/ButtonComponent/buttonComponent';
 
 export const Journey = () => {
@@ -25,7 +25,7 @@ export const Journey = () => {
                             <h3 className='travel-card__title'>{el.title}</h3>
                             <span className='travel-card__subtitle'>{el.value}</span>
                         </div>
-                        <ButtonInfo />
+                        <ButtonInfo title={'Подробнее'} />
                     </div>
                 )})}
             </div>

@@ -1,26 +1,44 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "homepage": "https://holnyx.github.io/SNP-layout-react",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && cp next.config.mjs .next/",
+    "export": "next build && next export",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d out --nojekyll --cname holnyx.github.io",
+    "static": "next build && next export && touch ./out/.nojekyll && echo 'holnyx.github.io' > ./out/CNAME"
   },
   "dependencies": {
     "@svgr/webpack": "^8.1.0",
-    "next": "14.2.3",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^10.0.0",
+    "next": "^14.2.3",
+    "next-compose-plugins": "^2.2.1",
+    "next-images": "^1.8.5",
+    "next-optimized-images": "^2.6.2",
     "react": "^18",
     "react-dom": "^18",
     "react-scroll": "^1.9.0",
-    "sass": "^1.77.2"
+    "sass": "^1.77.2",
+    "serve": "^14.2.3"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-scroll": "^1.8.10",
-    "typescript": "^5"
+    "css-loader": "^7.1.2",
+    "file-loader": "^6.2.0",
+    "gh-pages": "^6.1.1",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^4.0.0",
+    "typescript": "^5",
+    "url-loader": "^4.1.1"
   }
 }

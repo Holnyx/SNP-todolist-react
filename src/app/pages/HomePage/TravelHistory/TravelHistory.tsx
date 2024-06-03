@@ -1,6 +1,6 @@
 import React from 'react';
 import './TravelHistory.sass'
-import { TravelHistoryState } from './TravelHistoryState';
+import { TravelHistoryState } from './travelHistoryState';
 import { LetsGoSection } from '../LetsGoSection/LetsGoSection';
 import { ButtonInfo } from '@/components/commons/ButtonComponent/buttonComponent';
 import Image from 'next/image';
@@ -28,13 +28,13 @@ export const TravelHistory = () => {
                             </span>
                         </div>
                         <div className='social-container'>
-                            <ButtonInfo />
+                            <ButtonInfo title={'Подробнее'} />
                             <div className='social'>
                                 {el.social.map((el, i) =>
                                     <a key={i} className='a a--hover a--active' href="">{el}</a>)}
                             </div>
                         </div>
-                        <Image className='background-img' src={el.background} alt={'background-img'}></Image>
+                        <Image className='background-img' src={el.background} alt={'background-img'} unoptimized priority={true}></Image>
                     </div>
                 )}
             </div>

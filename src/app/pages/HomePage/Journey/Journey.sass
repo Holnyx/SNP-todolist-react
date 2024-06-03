@@ -1,5 +1,5 @@
-@import '../../../../styles/color'
-@import '../../../../styles/mixins'
+@import "/src/styles/color"
+@import "/src/styles/mixins"
 
 .journey-box
     display: flex
@@ -111,21 +111,6 @@
             height: 318px
             padding: 25px
             border-radius: 20px
-
-        .button-info
-            padding: 8px 20px
-            border-radius: 50px
-            transform: translateX(-20px)
-            @include mobile
-                padding: 0px 20px
-            &:hover
-                background-color: $color-green-400
-                @include mobile
-                    background-color: transparent
-            &:active
-                background-color: $color-orange-200
-                @include mobile
-                    background-color: transparent
 
         & > *
             position: relative

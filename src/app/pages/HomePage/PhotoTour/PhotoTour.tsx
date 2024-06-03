@@ -38,7 +38,7 @@ export const PhotoTour = () => {
             <div className="images-travel">
                 <figure className="images-travel__box">
                     {travelPhotoState.map((photo, i) =>
-                        <Image key={i} className={photo.class} src={photo.src} alt={photo.alt} style={getStyle(photo)}></Image>
+                        <Image key={i} className={photo.class} src={`${photo.src}`} alt={photo.alt} style={getStyle(photo)} unoptimized priority={true}></Image>
                     )}
                 </figure>
             </div>

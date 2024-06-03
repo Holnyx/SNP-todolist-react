@@ -1,6 +1,6 @@
 import React from 'react';
 import './Review.sass'
-import { tourReview } from './ReviewTourState';
+import { tourReview } from './reviewTourState';
 import Image from 'next/image';
 
 
@@ -16,14 +16,14 @@ export const ReviewTour = () => {
                 {tourReview.map((tour, i) =>
                     <div key={i} className='review' id='tour-review'>
                         <span className="review__info">
-                            {tour.review.split('\n').map((line, i) => (<>{line}<br /></>))}
+                            {tour.review.split('\n').map((line, j) => (<React.Fragment key={j}>{line}<br /></React.Fragment>))}
                         </span>
                         <div className='person-container'>
                             <div className='person-container__text'>
                                 <span>{tour.name}</span>
                                 <span>{tour.title}</span>
                             </div>
-                            <Image src={tour.avatar} alt="photo-person"></Image>
+                            <Image src={tour.avatar} alt="photo-person" width={100} height={100} unoptimized priority={true}></Image>
                         </div>
                     </div >
                 )}

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, SelectHTMLAttributes, useState } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import { Icon } from './Icon'
 
 export type directionOptionsType = {
