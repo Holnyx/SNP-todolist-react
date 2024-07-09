@@ -1,0 +1,37 @@
+@import './color'
+
+.not-found-page
+    display: inline-flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    height: 100vh
+    color: $color-black
+    background: $color-beige-100
+    font-size: 30px
+    &__title
+        font-size: 50px
+        text-transform: uppercase
+        padding-bottom: 40px
+        &:first-child
+            font-size: 200px
+    &__info
+        font-size: 20px
+        padding-bottom: 40px
+
+    &__link-home
+        display: flex
+        justify-content: center
+        align-items: center
+        gap: 15px
+        padding: 8px 20px
+        font-size: 23px
+        font-weight: 700
+        color: white
+        transition: .3s background ease
+        cursor: pointer
+        border-radius: 50px
+        background-color: $color-green-400
+        text-transform: uppercase
+        &:active
+            background-color: $color-orange-200

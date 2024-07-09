@@ -1,3 +1,4 @@
+@import './color'
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -39,9 +40,18 @@ table
     border-collapse: collapse
     border-spacing: 0
 
-svg
-    margin: 0
-    padding: 0
-    border: none
-
-
+*
+    list-style-type: none
+    text-decoration: none
+body
+    margin: 0 auto
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+    background: $color-beige-100
+    text-align: center
+    color: $color-black
+    max-width: 600px
+    width: 100%
+code
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace

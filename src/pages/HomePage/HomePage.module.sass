@@ -1,0 +1,143 @@
+@import '/src/styles/color'
+@import '/src/styles/mixins'
+
+.list
+    display: flex
+    flex-direction: column
+    gap: 5px
+    padding: 0
+    margin: 0
+
+.container
+    max-width: 1280px
+    margin: 0 auto
+    padding: 0 20px
+    box-sizing: border-box
+
+.logo
+    margin: 50px 0
+    @include font-style(600, 50px, auto, auto)
+
+.form
+    padding: 30px
+    background-color: white
+    border-radius: 30px
+
+    @include mobile
+        padding: 20px
+
+.add-task
+    display: flex
+    flex-direction: column
+    width: 100%
+
+.add-task__input
+    width: 100%
+    margin-right: 10px
+    padding: 15px
+    padding-left: 50px
+    box-sizing: border-box
+    @include font-style(400, 20px, 142%, auto)
+    color: $color-black
+    border: 1px solid $color-beige-200
+    border-radius: 10px
+    background-color: $color-beige-100
+    outline: solid transparent
+    transition: .4s ease
+    &:-webkit-autofill
+        -webkit-box-shadow: 0 0 0px 1000px $color-beige-100 inset
+    &:focus-webkit-autofill
+        -webkit-box-shadow: 0 0 0px 1000px $color-beige-200 inset
+    &:hover
+        background-color: $color-beige-200
+    &:focus-visible
+        background-color: $color-beige-200
+        outline: solid $color-grey-300
+
+    @include mobile
+        padding-left: 40px
+        font-size: 14px
+
+.button
+    padding: 15px
+    @include font-style(400, 20px, 142%, auto)
+    border: none
+    border-radius: 10px
+    color: white
+    background-color: $color-green-400
+    transition: .3s background-color ease
+    cursor: pointer
+    &:hover
+        background-color: $color-green-200
+        @include mobile
+            background-color: $color-green-400
+    &:active
+        background-color: $color-orange-200
+        @include mobile
+            background-color: $color-orange-200
+
+.down-menu
+    display: none
+    align-items: center
+    justify-content: space-between
+    gap: 10px
+
+    @include mobile
+        position: relative
+        margin-top: 60px
+
+    .count
+        display: block
+        width: 110px
+        font-size: 14px
+        @include mobile
+            position: absolute
+            bottom: 55px
+
+    .btn-container
+        display: flex
+        justify-content: space-between
+        gap: 5px
+        max-width: 175px
+        width: 100%
+
+        @include mobile
+            position: absolute
+            left: 0
+            right: 0
+            bottom: 0
+            max-width: 175px
+            width: 100%
+            margin: 0 auto
+
+        .filter-btn
+            padding: 8px
+            width: 100%
+            @include font-style(400, 14px, 142%, auto)
+            color: white
+            background-color: $color-green-400
+            border-radius: 5px
+            border: none
+            transition: .3s background-color ease
+            cursor: pointer
+            &:hover
+                background-color: $color-green-200
+                @include mobile
+                    background-color: $color-orange-200
+        .btn-focus
+            background-color: $color-orange-200
+
+.clear-btn
+    position: relative
+    width: 110px
+    padding: 0
+    font-size: 14px
+    color: $color-black
+    background-color: transparent
+    border: none
+    cursor: pointer
+    @include mobile
+        bottom: 55px
+
+    &--hide
+        z-index: -999

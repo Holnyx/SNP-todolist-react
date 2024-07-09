@@ -1,0 +1,101 @@
+@import '/src/styles/color'
+@import '/src/styles/mixins'
+
+.list
+    display: flex
+    flex-direction: column
+    gap: 5px
+    padding: 0
+    margin: 0
+
+    &__task
+        position: relative
+        display: flex
+        align-items: center
+        gap: 10px
+        padding: 10px
+        border: 1px solid $color-beige-200
+        border-radius: 10px
+        list-style-type: none
+
+        &:hover .task__del-btn
+            opacity: 1
+
+        .input-value
+            padding: 1px 0 1px 6px
+            margin: -2px
+            margin-left: 28px
+            width: 100%
+            @include font-style(400, 22px, 142%, auto)
+            border-radius: 6px
+            cursor: pointer
+            &:focus-visible
+                border: 1px solid $color-grey-300
+                outline: none
+            @include mobile
+                padding: 5px 0 5px 6px
+                @include font-style(400, 16px, 142%, auto)
+
+        .task
+            &__checkbox
+                position: absolute
+                z-index: -1
+                opacity: 0
+
+            &__custom-checkbox
+                position: relative
+                display: inline-block
+                max-width: 18px
+                width: 100%
+                height: 18px
+                background: transparent
+                border: $color-black solid 1px
+                border-radius: 50%
+                cursor: pointer
+                .custom-checkbox-img
+                    position: absolute
+                    left: 50%
+                    top: 50%
+                    width: 10px
+                    height: 10px
+                    transform: translate(-50%, -50%) scale(0)
+                    &--show
+                        transform: translate(-50%, -50%) scale(1)
+
+            &__title
+                margin-right: 16px
+                margin-left: 6px
+                @include font-style(400, 22px, 142%, auto)
+                text-align: start
+                color: $color-black
+                cursor: pointer
+                word-break: break-all
+
+                @include mobile
+                    @include font-style(400, 16px, 142%, auto)
+
+                &--checked
+                    text-decoration: line-through
+                    color: $color-grey-300
+
+            &__del-btn
+                position: relative
+                right: 10px
+                top: -3px
+                height: 31px
+                margin: 0 auto
+                margin-right: 0
+                padding-left: 10px
+                padding: 0
+                @include font-style(100, 35px, auto, auto)
+                color: $color-black
+                background: transparent
+                border: none
+                opacity: 0
+                transition: .5s opacity ease
+                cursor: pointer
+
+                @include mobile
+                    top: -1px
+                    opacity: 1
+                    @include font-style(100, 30px, auto, auto)

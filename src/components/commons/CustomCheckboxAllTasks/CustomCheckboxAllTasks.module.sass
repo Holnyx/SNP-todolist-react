@@ -1,0 +1,32 @@
+@import '/src/styles/color'
+@import '/src/styles/mixins'
+
+.checkbox
+    position: absolute
+    z-index: -1
+    width: 1px
+    height: 1px
+    opacity: 0
+
+.custom-checkbox
+    position: absolute
+    top: 16px
+    left: 14px
+    width: 26px
+    height: 26px
+    cursor: pointer
+    @include mobile
+        left: 10px
+    .img
+        filter: invert(2) grayscale(1000%) contrast(.6)
+        transition: .3s filter ease
+        cursor: pointer
+        &--change-color
+            filter: none
+        &--hide
+            display: none
+        &--show
+            display: block
+        @include mobile
+            transform: scale(.7)
+            left: 10px
