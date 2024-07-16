@@ -4,19 +4,18 @@ type ButtonFilteredType = {
     href?: string;
     title: string;
     className: string;
-    id?: string;
     onClick?: () => void;
 };
 
-const ButtonFiltered: FC<ButtonFilteredType> = ({ title, className, id, onClick, href }) => {
+const ButtonFiltered: FC<ButtonFilteredType> = ({ title, className, onClick, href }) => {
 
     return href ? (
-        <a href={href} className={className} id={id} onClick={onClick}>{title}</a>
+        <a href={href} className={className} onClick={onClick}>{title}</a>
     ) : (
-        <button className={className} id={id} onClick={onClick}>{title}</button>
+        <button className={className} onClick={onClick}>{title}</button>
     );
 };
 
-export default memo(ButtonFiltered);
+export default ButtonFiltered;
 
 

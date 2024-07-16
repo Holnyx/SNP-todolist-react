@@ -24,4 +24,4 @@ const InputAddTasks: FC<InputAddTasksItems> = ({ className, placeholder, type, v
         />
     );
 }
-export default InputAddTasks
+export default memo(InputAddTasks)

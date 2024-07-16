@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import s from '/src/styles/style.module.sass'
+import s from './Header.module.sass'
 
 const Header = memo(() => {
     return (

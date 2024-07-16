@@ -39,30 +39,30 @@ function HomePage({ }) {
   }, [tasks]);
 
 
-  const tasksForTodoList: TaskStateItems[] = filter === 'active' ? tasks.filter(t => !t.isDone)
-    : filter === 'completed' ? tasks.filter(t => t.isDone)
-      : tasks
+  const tasksForTodoList: TaskStateItems[] = (filter === 'active' ? tasks.filter(tasks => !tasks.isDone)
+    : filter === 'completed' ? tasks.filter(tasks => tasks.isDone)
+      : tasks)
 
-  const changeTodoListFilter = (filter: FilterValues) => {
+  const changeTodoListFilter = ((filter: FilterValues) => {
     setFilter(filter)
-  }
+  })
 
-  const changeAllTasksStatus = useCallback(function () {
+  const changeAllTasksStatus = useCallback(() => {
     const action = changeAllTaskStatusAC();
     dispatch(action);
   }, []);
 
-  const changeTaskStatus = useCallback(function (id: string, isDone: boolean) {
+  const changeTaskStatus = useCallback((id: string, isDone: boolean) => {
     const action = changeTaskStatusAC(id, isDone);
     dispatch(action);
   }, []);
 
-  const removeTask = useCallback(function (id: string) {
+  const removeTask = useCallback((id: string) => {
     const action = removeTaskAC(id);
     dispatch(action);
   }, []);
 
-  const addTask = useCallback(function (title: string) {
+  const addTask = useCallback((title: string) => {
     const action = addTaskAC(title);
     dispatch(action);
   }, []);
@@ -73,20 +73,24 @@ function HomePage({ }) {
   }
 
   let count = () => {
-    return tasks.filter(el => el.isDone === false).length
+    return tasks.filter(item => item.isDone === false).length
   }
 
   const addTaskHandler = () => {
-    taskTitle.trim() !== "" ? addTask(taskTitle) : setTaskTitle('')
+    if (taskTitle.trim() !== "") {
+      addTask(taskTitle)
+    } else {
+      setTaskTitle('')
+    }
     setTaskTitle('')
   }
 
-  const deleteAllTAsksComplete = useCallback(function () {
+  const deleteAllTAsksComplete = useCallback(() => {
     const action = removeAllTasksCompleteAC();
     dispatch(action);
   }, []);
 
-  const updateTaskTitle = useCallback(function (id: string, newTitle: string) {
+  const updateTaskTitle = useCallback((id: string, newTitle: string) => {
     const action = changeTaskTitleAC(id, newTitle);
     dispatch(action);
   }, []);
@@ -109,28 +113,27 @@ function HomePage({ }) {
             />
             <ButtonFiltered
               className={s.button}
-              id={'tn-addTask'}
               onClick={() => addTaskHandler()}
               title={'+'} />
           </div>
           <div>
-            <ul className={s.list} id="list">
-              {tasksForTodoList.map((t) => {
+            <ul className={s.list}>
+              {tasksForTodoList.map((task) => {
                 return (
-                  <Task key={t.id}
-                    id={t.id}
-                    oldTitle={t.title}
-                    isDone={t.isDone}
+                  <Task key={task.id}
+                    id={task.id}
+                    oldTitle={task.title}
+                    isDone={task.isDone}
                     changeTaskStatus={changeTaskStatus}
                     removeTask={removeTask}
-                    title={(newTitle) => updateTaskTitle(t.id, newTitle)}
+                    title={(newTitle) => updateTaskTitle(task.id, newTitle)}
                   />
                 )
               })}
             </ul>
           </div>
           <div className={s["down-menu"]} style={tasks.length > 0 ? { display: 'flex' } : { display: 'none' }}>
-            <div id="count">
+            <div>
               <span className={s.count}>{count()} item left</span>
             </div>
             <div className={s["btn-container"]}>

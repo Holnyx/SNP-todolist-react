@@ -47,7 +47,7 @@ const Task: FC<TaskItems> = ({ id, oldTitle, isDone, changeTaskStatus, removeTas
     }
 
     return (
-        <li className={s["list__task"]} id="list__task">
+        <li className={s["list__task"]} onDoubleClick={changeTaskTitleHandler}>
             <input className={s["task__checkbox"]} type="checkbox" id={id} onChange={changeStatus} />
             {!isHidden && (
                 <label htmlFor={id} className={s["task__custom-checkbox"]} >
@@ -59,7 +59,6 @@ const Task: FC<TaskItems> = ({ id, oldTitle, isDone, changeTaskStatus, removeTas
 
             {!isHidden ? (
                 <label className={`${s["task__title"]} ${checkedClass}`}
-                    onDoubleClick={changeTaskTitleHandler}
                     style={{ display: isHidden ? 'none' : 'block' }}>
                     {oldTitle}
                 </label>

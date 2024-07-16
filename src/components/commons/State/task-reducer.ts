@@ -58,13 +58,13 @@ const tasksReducer = (
     }
     case 'CHANGE-ALL-TASK-STATUS': {
       const allDone = state.every(task => task.isDone);
-      return state.map(t => ({
-        ...t,
+      return state.map(task => ({
+        ...task,
         isDone: !allDone,
       }));
     }
     case 'REMOVE-ALL-TASKS-COMPLETE': {
-      return state.filter(t => !t.isDone);
+      return state.filter(task => !task.isDone);
     }
     default:
       return state;
