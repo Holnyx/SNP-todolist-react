@@ -29,6 +29,7 @@
 .add-task
     display: flex
     flex-direction: column
+    gap: 0px
     width: 100%
 
 .add-task__input
@@ -81,6 +82,8 @@
     align-items: center
     justify-content: space-between
     gap: 10px
+    .show
+        display: flex
 
     @include mobile
         position: relative
@@ -130,7 +133,7 @@
 .clear-btn
     position: relative
     width: 110px
-    padding: 0
+    padding: 16px 0 0 
     font-size: 14px
     color: $color-black
     background-color: transparent
@@ -141,3 +144,15 @@
 
     &--hide
         z-index: -999
+
+.italic::placeholder
+    font-style: italic
+
+.box
+    display: flex
+    position: relative
+.got-items
+    gap: 18px
+
+.show
+    display: flex

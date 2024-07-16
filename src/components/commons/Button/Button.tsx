@@ -7,7 +7,7 @@ type ButtonFilteredType = {
     onClick?: () => void;
 };
 
-const ButtonFiltered: FC<ButtonFilteredType> = ({ title, className, onClick, href }) => {
+const Button: FC<ButtonFilteredType> = ({ title, className, onClick, href }) => {
 
     return href ? (
         <a href={href} className={className} onClick={onClick}>{title}</a>
@@ -16,6 +16,6 @@ const ButtonFiltered: FC<ButtonFilteredType> = ({ title, className, onClick, hre
     );
 };
 
-export default ButtonFiltered;
+export default Button;
 
 

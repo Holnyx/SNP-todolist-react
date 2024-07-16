@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FC, memo, useCallback, useEffect, useRef, useState } from 'react';
-import InputAddTasks from '../InputAddTasks/InputAddTasks';
+import Input from '../Input/Input';
+
 import s from './Task.module.sass'
 import cx from 'classnames';
 
@@ -41,9 +42,11 @@ const Task: FC<TaskItems> = ({ id, oldTitle, isDone, changeTaskStatus, removeTas
 
 
     const keyDownHandler = (event: React.KeyboardEvent) => {
-        event.key === "Escape" ? cancelChangeTaskTitle()
-            : event.key === 'Enter' ? changeTaskTitleHandler()
-                : ''
+        if (event.key === "Escape") {
+            cancelChangeTaskTitle()
+        } else if (event.key === 'Enter') {
+            changeTaskTitleHandler()
+        }
     }
 
     return (
@@ -58,12 +61,11 @@ const Task: FC<TaskItems> = ({ id, oldTitle, isDone, changeTaskStatus, removeTas
             )}
 
             {!isHidden ? (
-                <label className={`${s["task__title"]} ${checkedClass}`}
-                    style={{ display: isHidden ? 'none' : 'block' }}>
+                <label className={`${s["task__title"]} ${checkedClass}`}>
                     {oldTitle}
                 </label>
             ) : (
-                <InputAddTasks
+                <Input
                     onKeyDown={keyDownHandler}
                     onChange={changeTitleHandler}
                     onBlur={changeTaskTitleHandler}

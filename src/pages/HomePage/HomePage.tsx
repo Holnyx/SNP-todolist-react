@@ -4,11 +4,13 @@ import { addTaskAC, changeAllTaskStatusAC, changeTaskStatusAC, changeTaskTitleAC
 import { AppRootStateItems } from '@/components/store';
 import Header from "@/components/commons/Header/Header"
 import CustomCheckboxAllTasks from '@/components/commons/CustomCheckboxAllTasks/CustomCheckboxAllTasks';
-import InputAddTasks from '@/components/commons/InputAddTasks/InputAddTasks';
-import ButtonFiltered from '@/components/commons/ButtonFiltered/ButtonFiltered';
 import Task from '@/components/commons/Task/Task';
+import Input from '@/components/commons/Input/Input';
+import Button from '@/components/commons/Button/Button';
+
 import s from './HomePage.module.sass'
 import cx from 'classnames';
+
 
 
 type FilterValues = "all" | "active" | "completed"
@@ -26,6 +28,7 @@ function HomePage({ }) {
   const tasks = useSelector<AppRootStateItems, TaskStateItems[]>(state => state.tasks)
 
   const dispatch = useDispatch();
+  
   useEffect(() => {
     const storedTasks = localStorage.getItem('tasks');
     if (storedTasks) {
@@ -67,13 +70,18 @@ function HomePage({ }) {
     dispatch(action);
   }, []);
 
+  const deleteAllTAsksComplete = useCallback(() => {
+    const action = removeAllTasksCompleteAC();
+    dispatch(action);
+  }, []);
+
+  const updateTaskTitle = useCallback((id: string, newTitle: string) => {
+    const action = changeTaskTitleAC(id, newTitle);
+    dispatch(action);
+  }, []);
 
   const setTaskTitleHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setTaskTitle(event.currentTarget.value)
-  }
-
-  let count = () => {
-    return tasks.filter(item => item.isDone === false).length
   }
 
   const addTaskHandler = () => {
@@ -85,25 +93,29 @@ function HomePage({ }) {
     setTaskTitle('')
   }
 
-  const deleteAllTAsksComplete = useCallback(() => {
-    const action = removeAllTasksCompleteAC();
-    dispatch(action);
-  }, []);
+  let count = () => {
+    return tasks.filter(item => item.isDone === false).length
+  }
 
-  const updateTaskTitle = useCallback((id: string, newTitle: string) => {
-    const action = changeTaskTitleAC(id, newTitle);
-    dispatch(action);
-  }, []);
+  const isCompletedTaskExists = tasks.some(t => t.isDone)
+  const addTaskForm = cx({
+    [s["add-task"]]: true,
+    [s["got-items"]]: tasks.length > 0
+  })
+  const downMenuShow = cx({
+    [s["down-menu"]]: true,
+    [s["show"]]: tasks.length > 0
+  })
 
   return (
     <div className={s.container}>
       <Header />
       <div className={s.form}>
-        <section className={s["add-task"]} style={tasks.length > 0 ? { gap: '18px' } : { gap: '0px' }}>
-          <div style={{ display: 'flex', position: 'relative' }}>
+        <section className={addTaskForm}>
+          <div className={s["box"]}>
             <CustomCheckboxAllTasks tasks={tasks} onClickHandler={changeAllTasksStatus} />
-            <InputAddTasks
-              className={s["add-task__input"]}
+            <Input
+              className={cx(s["add-task__input"], s["italic"])}
               placeholder={'What needs to be done?'}
               type={'text'}
               value={taskTitle}
@@ -111,7 +123,7 @@ function HomePage({ }) {
               onKeyDown={(event) => event.key === "Enter" && addTaskHandler()}
               onBlur={addTaskHandler}
             />
-            <ButtonFiltered
+            <Button
               className={s.button}
               onClick={() => addTaskHandler()}
               title={'+'} />
@@ -132,31 +144,31 @@ function HomePage({ }) {
               })}
             </ul>
           </div>
-          <div className={s["down-menu"]} style={tasks.length > 0 ? { display: 'flex' } : { display: 'none' }}>
+          <div className={downMenuShow}>
             <div>
               <span className={s.count}>{count()} item left</span>
             </div>
             <div className={s["btn-container"]}>
-              <ButtonFiltered
+              <Button
                 className={cx(s["filter-btn"], { [s["btn-focus"]]: filter === 'all' })}
                 onClick={() => changeTodoListFilter("all")}
                 title={'All'} />
-              <ButtonFiltered
+              <Button
                 className={cx(s["filter-btn"], { [s["btn-focus"]]: filter === 'active' })}
                 onClick={() => changeTodoListFilter("active")}
                 title={'Active'} />
-              <ButtonFiltered
+              <Button
                 className={cx(s["filter-btn"], { [s["btn-focus"]]: filter === 'completed' })}
                 onClick={() => changeTodoListFilter("completed")}
                 title={'Complete'} />
             </div>
-            {tasks.some(t => t.isDone)
+            {isCompletedTaskExists
               ?
-              <ButtonFiltered className={s["clear-btn"]}
+              <Button className={s["clear-btn"]}
                 onClick={deleteAllTAsksComplete}
                 title={'Clear completed'} />
               :
-              <div className={s["clear-btn"]} style={{ paddingTop: "16px" }}></div>}
+              <div className={s["clear-btn"]}></div>}
           </div>
         </section>
       </div>

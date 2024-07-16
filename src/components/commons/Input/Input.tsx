@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, memo } from 'react';
 
-type InputAddTasksItems = {
+type InputItems = {
     className: string
     placeholder: string
     type: string
@@ -11,7 +11,7 @@ type InputAddTasksItems = {
     autoFocus?: boolean
 }
 
-const InputAddTasks: FC<InputAddTasksItems> = ({ className, placeholder, type, value, onBlur, onChange, onKeyDown, autoFocus }) => {
+const Input: FC<InputItems> = ({ className, placeholder, type, value, onBlur, onChange, onKeyDown, autoFocus }) => {
     return (
         <input className={className}
             placeholder={placeholder}
@@ -24,4 +24,4 @@ const InputAddTasks: FC<InputAddTasksItems> = ({ className, placeholder, type, v
         />
     );
 }
-export default memo(InputAddTasks)
+export default memo(Input)
