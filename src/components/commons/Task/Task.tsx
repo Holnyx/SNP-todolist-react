@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, memo, useCallback, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, FC, memo, useCallback, useState } from 'react';
 import Input from '../Input/Input';
 
 import s from './Task.module.sass'
@@ -20,9 +20,10 @@ const Task: FC<TaskItems> = ({ id, oldTitle, isDone, changeTaskStatus, removeTas
     const checkedClass = cx({ [s['task__title--checked']]: isDone })
     const checkedCheckbox = cx({ [s['custom-checkbox-img--show']]: isDone })
 
-    const changeStatus = (e: ChangeEvent<HTMLInputElement>) => {
+    const changeStatus = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         changeTaskStatus(id, e.currentTarget.checked)
-    }
+    },[])
+
     const changeTaskTitleHandler = () => {
         setIsHidden(!isHidden);
         if (isHidden) {
@@ -31,6 +32,7 @@ const Task: FC<TaskItems> = ({ id, oldTitle, isDone, changeTaskStatus, removeTas
         }
         setNewTitle(oldTitle)
     }
+
     const cancelChangeTaskTitle = () => {
         setIsHidden(!isHidden);
         setNewTitle(oldTitle)
@@ -39,7 +41,6 @@ const Task: FC<TaskItems> = ({ id, oldTitle, isDone, changeTaskStatus, removeTas
     const changeTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setNewTitle(e.currentTarget.value)
     }
-
 
     const keyDownHandler = (event: React.KeyboardEvent) => {
         if (event.key === "Escape") {
@@ -80,4 +81,4 @@ const Task: FC<TaskItems> = ({ id, oldTitle, isDone, changeTaskStatus, removeTas
         </li>
     );
 }
-export default Task
+export default memo(Task)

@@ -1,11 +1,11 @@
-import React, { FC, memo, useRef } from 'react';
+import React, { FC, memo } from 'react';
 
 type ButtonFilteredType = {
     href?: string;
     title: string;
     className: string;
     onClick?: () => void;
-};
+}
 
 const Button: FC<ButtonFilteredType> = ({ title, className, onClick, href }) => {
 
@@ -16,6 +16,6 @@ const Button: FC<ButtonFilteredType> = ({ title, className, onClick, href }) => 
     );
 };
 
-export default Button;
+export default memo(Button);
 
 

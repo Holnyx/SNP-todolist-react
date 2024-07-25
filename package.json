@@ -29,6 +29,7 @@
     "react-redux": "^9.1.2",
     "react-scroll": "^1.9.0",
     "redux": "^5.0.1",
+    "reselect": "^5.1.1",
     "sass": "^1.77.6",
     "sass-resources-loader": "^2.2.5",
     "serve": "^14.2.3",

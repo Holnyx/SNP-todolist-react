@@ -1,5 +1,5 @@
 import { combineReducers, legacy_createStore } from 'redux'
-import tasksReducer from './commons/State/task-reducer';
+import tasksReducer from './taskReducer';
 
 const rootReducer = combineReducers({
     tasks: tasksReducer,

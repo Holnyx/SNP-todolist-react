@@ -12,6 +12,7 @@ type InputItems = {
 }
 
 const Input: FC<InputItems> = ({ className, placeholder, type, value, onBlur, onChange, onKeyDown, autoFocus }) => {
+    
     return (
         <input className={className}
             placeholder={placeholder}
