@@ -1,8 +1,5 @@
-import {
-  TaskState,
-} from '@/pages/HomePage/HomePage';
+import { TaskState } from '@/components/pages/HomePage/HomePage';
 import { Actions } from './actions';
-
 
 const initialState: TaskState = {
   todoList: [],
@@ -66,6 +63,9 @@ const tasksReducer = (
     }
     case 'CHANGE-FILTER': {
       return { ...state, activeFilter: action.payload };
+    }
+    case 'INIT-TODOS-FROM-STORAGE': {
+      return { ...state, todoList: action.payload };
     }
     default:
       return state;

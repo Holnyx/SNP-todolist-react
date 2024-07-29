@@ -1,14 +1,27 @@
 import { useDispatch } from 'react-redux';
+import { PayloadAction } from '@reduxjs/toolkit';
+import { useCallback } from 'react';
 
-const useDispatchAction = () => {
+export const useActionWithPayload = <T>(
+  action: (payload: T) => PayloadAction<T>
+) => {
   const dispatch = useDispatch();
+  const handler = useCallback(
+    (payload: T) => {
+      dispatch(action(payload));
+    },
+    [dispatch, action]
+  );
 
-  const dispatchAction = (actionCreator: (arg1: any, arg2: any, arg3: any) => any, arg1?: any, arg2?: any, arg3?: any) => {
-    const action = actionCreator(arg1, arg2, arg3);
-    dispatch(action);
-  };
-
-  return { dispatchAction };
+  return handler;
 };
 
-export default useDispatchAction;
+export const useAction = (action: () => PayloadAction<undefined>) => {
+  const dispatch = useDispatch();
+
+  const handler = useCallback(() => {
+    dispatch(action());
+  }, [dispatch, action]);
+
+  return handler;
+};
