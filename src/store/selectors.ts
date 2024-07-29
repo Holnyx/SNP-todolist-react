@@ -17,8 +17,6 @@ export const getTaskFilterSelector = createSelector(
 export const getTasksForTodoListSelector = createSelector(
   [getTasksSelector, getTaskFilterSelector],
   (tasks, filter) => {
-    console.log('Tasks:', tasks);
-    console.log('Filter:', filter);
     if (filter === 'active') {
       return tasks.filter(task => !task.isDone);
     }
