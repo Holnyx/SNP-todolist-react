@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, memo, useCallback, useState } from 'react';
-import Input from '../Input/Input';
+import Input from '../Inputs/Input';
 
 import s from './Task.module.sass';
 import cx from 'classnames';
@@ -27,6 +27,14 @@ const Task: FC<TaskItems> = ({
   const changeStatus = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     changeTaskStatus(id, e.currentTarget.checked);
   }, []);
+  const changeTitleHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setNewTitle(e.currentTarget.value);
+  }, []);
+
+  const cancelChangeTaskTitle = () => {
+    setIsHidden(!isHidden);
+    setNewTitle(oldTitle);
+  };
 
   const changeTaskTitleHandler = () => {
     setIsHidden(!isHidden);
@@ -34,15 +42,6 @@ const Task: FC<TaskItems> = ({
       newTitle.trim() === '' ? removeTask(id) : getTitle(newTitle.trim());
     }
     setNewTitle(oldTitle);
-  };
-
-  const cancelChangeTaskTitle = () => {
-    setIsHidden(!isHidden);
-    setNewTitle(oldTitle);
-  };
-
-  const changeTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setNewTitle(e.currentTarget.value);
   };
 
   const keyDownHandler = (event: React.KeyboardEvent) => {

@@ -1,18 +1,22 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useCallback } from 'react';
 import { TaskStateItems } from '@/store/types';
+import { useAction } from '@/hooks/hooks';
+import { changeAllTaskStatusAC } from '@/store/actions';
 
 import cx from 'classnames';
 import s from './CustomCheckboxAllTasks.module.sass';
 
 type CustomCheckboxAllTasksItems = {
   tasks: TaskStateItems[];
-  onClickHandler: () => void;
 };
 
-const CustomCheckboxAllTasks: FC<CustomCheckboxAllTasksItems> = ({
-  tasks,
-  onClickHandler,
-}) => {
+const CustomCheckboxAllTasks: FC<CustomCheckboxAllTasksItems> = ({ tasks }) => {
+  const changeAllTasksStatusAction = useAction(changeAllTaskStatusAC);
+  
+  const changeAllTasksStatus = useCallback(() => {
+    changeAllTasksStatusAction();
+  }, []);
+
   const changeStyleCheckbox = cx({
     [s['img']]: true,
     [s['img--hide']]: tasks.length === 0,
@@ -31,7 +35,7 @@ const CustomCheckboxAllTasks: FC<CustomCheckboxAllTasksItems> = ({
         className={s['custom-checkbox']}
       >
         <svg
-          onClick={onClickHandler}
+          onClick={changeAllTasksStatus}
           className={changeStyleCheckbox}
           width="26"
           height="26"

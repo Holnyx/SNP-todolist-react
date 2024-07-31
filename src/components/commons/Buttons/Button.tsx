@@ -1,13 +1,13 @@
 import React, { FC, memo } from 'react';
 
-type ButtonFilteredType = {
+type ButtonItem = {
   href?: string;
   getTitle: string;
   className: string;
   onClick?: () => void;
 };
 
-const Button: FC<ButtonFilteredType> = ({
+const Button: FC<ButtonItem> = ({
   getTitle,
   className,
   onClick,

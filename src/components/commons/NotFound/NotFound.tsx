@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import Button from '../Button/Button';
+import Button from '../Buttons/Button';
 
 import s from './NotFound.module.sass';
 
