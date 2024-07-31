@@ -5,17 +5,17 @@ const rootSelector = createSelector(
   (state: AppRootStateItems) => state,
   state => state.tasks
 );
-export const getTasksSelector = createSelector(
+export const tasksSelector = createSelector(
   rootSelector,
   state => state.todoList
 );
-export const getTaskFilterSelector = createSelector(
+export const tasksFilterSelector = createSelector(
   rootSelector,
   state => state.activeFilter
 );
 
-export const getTasksForTodoListSelector = createSelector(
-  [getTasksSelector, getTaskFilterSelector],
+export const tasksForTodoListSelector = createSelector(
+  [tasksSelector, tasksFilterSelector],
   (tasks, filter) => {
     if (filter === 'active') {
       return tasks.filter(task => !task.isDone);
@@ -27,6 +27,6 @@ export const getTasksForTodoListSelector = createSelector(
   }
 );
 
-export const count = createSelector([getTasksSelector], tasks => {
+export const countSelector = createSelector([tasksSelector], tasks => {
   return tasks.filter(item => item.isDone === false).length;
 });

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Button from '../Button/Button';
 
 import s from './NotFound.module.sass';
@@ -20,4 +20,4 @@ const NotFoundPage = () => {
   );
 };
 
-export default NotFoundPage;
+export default memo(NotFoundPage);

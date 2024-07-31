@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, memo } from 'react';
+import React, { ChangeEvent, FC } from 'react';
 
 type InputItems = {
   className: string;
@@ -11,27 +11,29 @@ type InputItems = {
   autoFocus?: boolean;
 };
 
-const Input: FC<InputItems> = ({
-  className,
-  placeholder,
-  type,
-  value,
-  onBlur,
-  onChange,
-  onKeyDown,
-  autoFocus,
-}) => {
-  return (
-    <input
-      className={className}
-      placeholder={placeholder}
-      type={type}
-      value={value}
-      onChange={onChange}
-      onKeyDown={onKeyDown}
-      onBlur={onBlur}
-      autoFocus={autoFocus}
-    />
-  );
-};
-export default memo(Input);
+const Input: FC<InputItems> = React.memo(
+  ({
+    className,
+    placeholder,
+    type,
+    value,
+    onBlur,
+    onChange,
+    onKeyDown,
+    autoFocus,
+  }) => {
+    return (
+      <input
+        className={className}
+        placeholder={placeholder}
+        type={type}
+        value={value}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+        onBlur={onBlur}
+        autoFocus={autoFocus}
+      />
+    );
+  }
+);
+export default Input;

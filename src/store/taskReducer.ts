@@ -1,4 +1,4 @@
-import { TaskState } from '@/components/pages/HomePage/HomePage';
+import { TaskState } from './types';
 import { Actions } from './actions';
 
 const initialState: TaskState = {

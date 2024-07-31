@@ -22,11 +22,13 @@ import {
 } from '@/store/actions';
 
 import {
-  count,
-  getTaskFilterSelector,
-  getTasksForTodoListSelector,
-  getTasksSelector,
+  countSelector,
+  tasksFilterSelector,
+  tasksForTodoListSelector,
+  tasksSelector,
 } from '@/store/selectors';
+
+import { FilterValues, TaskStateItems } from '@/store/types';
 
 import Header from '@/components/commons/Header/Header';
 import CustomCheckboxAllTasks from '@/components/commons/CustomCheckboxAllTasks/CustomCheckboxAllTasks';
@@ -37,26 +39,13 @@ import Button from '@/components/commons/Button/Button';
 import s from './HomePage.module.sass';
 import cx from 'classnames';
 
-export type TaskStateItems = {
-  id: string;
-  title: string;
-  isDone: boolean;
-};
-
-export type TaskState = {
-  todoList: TaskStateItems[];
-  activeFilter: FilterValues;
-};
-
-export type FilterValues = 'all' | 'active' | 'completed';
-
 function HomePage({}) {
   const [taskTitle, setTaskTitle] = useState('');
 
-  const tasks = useSelector(getTasksForTodoListSelector);
-  const filter = useSelector(getTaskFilterSelector);
-  const getTasks = useSelector(getTasksSelector);
-  const counter = useSelector(count);
+  const filteredTasks = useSelector(tasksForTodoListSelector);
+  const filter = useSelector(tasksFilterSelector);
+  const allTasks = useSelector(tasksSelector);
+  const counter = useSelector(countSelector);
   const dispatch = useDispatch();
 
   const changeTodolistFilterAction = useActionWithPayload(
@@ -106,12 +95,12 @@ function HomePage({}) {
   }, [dispatch]);
 
   useEffect(() => {
-    if (getTasks && getTasks.length > 0) {
-      localStorage.setItem('tasks', JSON.stringify(getTasks));
+    if (allTasks && allTasks.length > 0) {
+      localStorage.setItem('tasks', JSON.stringify(allTasks));
     } else {
       localStorage.removeItem('tasks');
     }
-  }, [getTasks]);
+  }, [allTasks]);
 
   const addTaskHandler = () => {
     if (taskTitle.trim() !== '') {
@@ -120,15 +109,15 @@ function HomePage({}) {
     setTaskTitle('');
   };
 
-  const isCompletedTaskExists = tasks.some(task => task.isDone);
+  const isCompletedTaskExists = filteredTasks.some(task => task.isDone);
 
   const addTaskForm = cx({
     [s['add-task']]: true,
-    [s['got-items']]: getTasks.length > 0,
+    [s['got-items']]: allTasks.length > 0,
   });
   const downMenuShow = cx({
     [s['down-menu']]: true,
-    [s['show']]: getTasks.length > 0,
+    [s['show']]: allTasks.length > 0,
   });
 
   return (
@@ -138,7 +127,7 @@ function HomePage({}) {
         <section className={addTaskForm}>
           <div className={s['box']}>
             <CustomCheckboxAllTasks
-              tasks={getTasks}
+              tasks={allTasks}
               onClickHandler={changeAllTasksStatus}
             />
             <Input
@@ -158,7 +147,7 @@ function HomePage({}) {
           </div>
           <div>
             <ul className={s.list}>
-              {tasks.map(task => {
+              {filteredTasks.map(task => {
                 return (
                   <Task
                     key={task.id}

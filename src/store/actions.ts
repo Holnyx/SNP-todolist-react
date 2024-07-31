@@ -1,7 +1,4 @@
-import {
-  FilterValues,
-  TaskStateItems,
-} from '@/components/pages/HomePage/HomePage';
+import { FilterValues, TaskStateItems } from './types';
 
 export type RemoveTask = {
   type: 'REMOVE-TASK';

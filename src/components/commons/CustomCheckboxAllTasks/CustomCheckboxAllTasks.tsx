@@ -1,5 +1,5 @@
 import React, { FC, memo } from 'react';
-import { TaskStateItems } from '@/components/pages/HomePage/HomePage';
+import { TaskStateItems } from '@/store/types';
 
 import cx from 'classnames';
 import s from './CustomCheckboxAllTasks.module.sass';
